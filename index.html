@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>dic-vip</title>
+    <script type="text/javascript">
+      var phone;
+      var u = navigator.userAgent;
+      var phoneIsAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+      var phoneIsIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+      if (phoneIsAndroid){
+        phone='andr'
+      }
+      else{
+        phone='ios'
+      }
+    </script>
+    <style>
+      *{margin: 0;padding: 0;font-family: inherit;  line-height: inherit;  color: inherit;  font-size: inherit}
+      html,body{width: 100%;}
+      span{display: inline-block;}
+      a{color: black;}
+      input,textarea,div{
+        border: none;outline: none;
+      }
+      a,img,button,input,textarea,div{-webkit-tap-highlight-color:rgba(255,255,255,0)}
+    </style>
+  </head>
+  <body>
+  <script>
+    (function (doc, win) {
+      var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function () {
+          var clientWidth = docEl.clientWidth > 750 ? 749 : docEl.clientWidth ;
+          console.log(clientWidth)
+          if (!clientWidth) return;
+          docEl.style.fontSize = clientWidth / 750 * 100 + 'px';
+        };
+
+      if (!doc.addEventListener) return;
+      doc.addEventListener('DOMContentLoaded', recalc, false);
+      win.addEventListener(resizeEvt, recalc, false);
+    })(document, window);
+//    alert(devicePixelRatio)
+  </script>
+    <div id="app">
+      <component v-bind:is="currentView">
+      </component>
+    </div>
+  </body>
+
+</html>
